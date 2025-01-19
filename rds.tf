@@ -61,13 +61,15 @@ resource "aws_security_group" "db_sg" {
 resource "aws_db_instance" "fiap_techchallenge_db" {
   allocated_storage      = 20
   engine                 = "postgres"
-  engine_version         = "8.0"
+  engine_version         = "14.1"
   instance_class         = "db.t3.micro"
   username               = var.username_db
   password               = var.password_db # Nunca use senhas reais em arquivos públicos
   skip_final_snapshot    = true
+  publicly_accessible    = true
   db_subnet_group_name   = aws_db_subnet_group.db_subnet.name
   vpc_security_group_ids = [aws_security_group.db_sg.id]
+  identifier             = "challenge"  
 }
 
 # Outputs (opcional, para exibir informações)

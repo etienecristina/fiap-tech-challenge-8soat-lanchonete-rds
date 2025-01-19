@@ -66,7 +66,7 @@ resource "aws_db_instance" "fiap_techchallenge_db" {
   username               = var.username_db
   password               = var.password_db # Nunca use senhas reais em arquivos públicos
   skip_final_snapshot    = true
-  publicly_accessible    = true
+  # publicly_accessible    = true
   db_subnet_group_name   = aws_db_subnet_group.db_subnet.name
   vpc_security_group_ids = [aws_security_group.db_sg.id]
   identifier             = "challenge"  

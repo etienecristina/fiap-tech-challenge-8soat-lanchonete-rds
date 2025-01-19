@@ -1,3 +1,11 @@
+variable "username_db" {
+  type = string
+}
+
+variable "password_db" {
+  type = string
+}
+
 # Configuração do Provider
 provider "aws" {
   region = "us-east-1"
@@ -55,8 +63,8 @@ resource "aws_db_instance" "fiap_techchallenge_db" {
   engine                 = "postgres"
   engine_version         = "8.0"
   instance_class         = "db.t3.micro"
-  username               = "postgres"
-  password               = "fiap@2025" # Nunca use senhas reais em arquivos públicos
+  username               = var.username_db
+  password               = var.password_db # Nunca use senhas reais em arquivos públicos
   skip_final_snapshot    = true
   db_subnet_group_name   = aws_db_subnet_group.db_subnet.name
   vpc_security_group_ids = [aws_security_group.db_sg.id]

@@ -5,12 +5,12 @@ on:
     branches:
       - main
 
+env:
+    TF_VAR_password_db: ${{ secrets.APPLICATION_DB_PASSWORD }}
+    TF_VAR_username_db: ${{ secrets.APPLICATION_DB_USERNAME }}
+
 jobs:
   deploy:
-    env:
-  	TF_VAR_password_db: ${{ secrets.APPLICATION_DB_PASSWORD }}
-  	TF_VAR_username_db: ${{ secrets.APPLICATION_DB_USERNAME }}
-  	
     runs-on: ubuntu-latest
 
     steps:

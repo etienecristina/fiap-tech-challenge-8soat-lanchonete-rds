@@ -55,7 +55,7 @@ resource "aws_db_instance" "fiap_techchallenge_db" {
   engine                 = "postgres"
   engine_version         = "8.0"
   instance_class         = "db.t3.micro"
-  username               = "postgre"
+  username               = "postgres"
   password               = "fiap@2025" # Nunca use senhas reais em arquivos públicos
   skip_final_snapshot    = true
   db_subnet_group_name   = aws_db_subnet_group.db_subnet.name

@@ -57,7 +57,7 @@ resource "aws_security_group" "db_sg" {
   }
 }
 
-resource "aws_db_instance" "mysql_db" {
+resource "aws_db_instance" "fiap_techchallenge_db" {
   allocated_storage      = 20
   engine                 = "mysql"
   engine_version         = "8.0"

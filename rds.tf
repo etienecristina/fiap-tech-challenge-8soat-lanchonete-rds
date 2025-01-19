@@ -57,20 +57,19 @@ resource "aws_security_group" "db_sg" {
   }
 }
 
-# RDS Instance
-resource "aws_db_instance" "fiap_techchallenge_db" {
+resource "aws_db_instance" "mysql_db" {
   allocated_storage      = 20
-  engine                 = "postgres"
-  engine_version         = "14.1"
+  engine                 = "mysql"
+  engine_version         = "8.0"
   instance_class         = "db.t3.micro"
   username               = var.username_db
-  password               = var.password_db # Nunca use senhas reais em arquivos públicos
+  password               = var.password_db
   skip_final_snapshot    = true
-  # publicly_accessible    = true
   db_subnet_group_name   = aws_db_subnet_group.db_subnet.name
   vpc_security_group_ids = [aws_security_group.db_sg.id]
-  identifier             = "challenge"  
+  identifier             = "challenge"
 }
+
 
 # Outputs (opcional, para exibir informações)
 output "rds_endpoint" {

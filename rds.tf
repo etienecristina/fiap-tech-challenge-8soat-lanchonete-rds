@@ -31,10 +31,10 @@ resource "aws_db_subnet_group" "db_subnet" {
 resource "aws_security_group" "db_sg" {
   vpc_id      = aws_vpc.main.id
   name        = "rds-sg"
-  description = "Allow MySQL access"
+  description = "Allow PostgreSQL access"
 
   ingress {
-    description = "Allow MySQL access"
+    description = "Allow PostgreSQL access"
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
@@ -50,13 +50,13 @@ resource "aws_security_group" "db_sg" {
 }
 
 # RDS Instance
-resource "aws_db_instance" "mysql_db" {
+resource "aws_db_instance" "fiap_techchallenge_db" {
   allocated_storage      = 20
-  engine                 = "mysql"
+  engine                 = "postgres"
   engine_version         = "8.0"
   instance_class         = "db.t3.micro"
-  username               = "admin"
-  password               = "mypassword123" # Nunca use senhas reais em arquivos públicos
+  username               = "postgre"
+  password               = "fiap@2025" # Nunca use senhas reais em arquivos públicos
   skip_final_snapshot    = true
   db_subnet_group_name   = aws_db_subnet_group.db_subnet.name
   vpc_security_group_ids = [aws_security_group.db_sg.id]
@@ -64,10 +64,10 @@ resource "aws_db_instance" "mysql_db" {
 
 # Outputs (opcional, para exibir informações)
 output "rds_endpoint" {
-  value = aws_db_instance.mysql_db.endpoint
+  value = aws_db_instance.fiap_techchallenge_db.endpoint
 }
 
 output "rds_username" {
-  value = aws_db_instance.mysql_db.username
+  value = aws_db_instance.fiap_techchallenge_db.username
 }
 
